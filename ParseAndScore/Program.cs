@@ -10,25 +10,24 @@ namespace ParseAndScore
     {
         static void Main(string[] args)
         {
-            //TODO grap input include a quit condition!!
             var appName = "Html Parse & Score";
             var appVersion = "1.0";
             var appAuthor = "Lakeem Muhammad";
             Console.WriteLine("{0}: {1} Version: Created by: {2}", appName, appVersion, appAuthor);
             Console.WriteLine("\n");
+            var progFlag = true;
 
-             var appConsole = new ConsoleUI();
-             appConsole.ConsoleAction();
+            while (progFlag)
+            {
+                var appConsole = new ConsoleUI();
+                appConsole.ConsoleAction();
+                Console.WriteLine("Do you wish to continue? Y or N");
+                var answer = Console.ReadLine();
+                if (answer.ToLower() == "y") { progFlag = true; }
+                else { progFlag = false; }
 
-            var test2 = Console.ReadLine();
-
-
-
-
-
-
-            //TODO place user interaction in console
-
+            }
+            
         }
     }
 }

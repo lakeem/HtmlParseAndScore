@@ -13,15 +13,6 @@ namespace ParseAndScore
 {
    public  class DataAccess
     {
-
-        /*  
-         * * A user should be able to retrieve all scores for a given file
-* A user should be able to retrieve all scores run in the system for a custom date range
-* A user should be able to retrieve highest score for a given file
-* A user should be able to retrieve lowest score for a given file
-* A user should be able to retrieve the average score for each unique file name*/
-
-
         public List<ResponseInfo> GetAllScoresFromFile(string fileName)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.GetConnection("TestingDatabaseI")))
@@ -30,7 +21,6 @@ namespace ParseAndScore
                 return output;
             }            
         }
-
 
         public List<ResponseInfo> GetAllScoresFromDateRange(DateTime start, DateTime end)
         {
@@ -95,7 +85,7 @@ namespace ParseAndScore
         }
 
 
-        //TODO debug the Dapper tv functionality 
+        //TODO debug the Dapper tv functionality next time you're bored
         private static  List<SqlDataRecord> DataTalbeConverstion(List<KeyValuePair<string, int>> list)
         {
             var htmlKVTagValues = new List<SqlDataRecord>();

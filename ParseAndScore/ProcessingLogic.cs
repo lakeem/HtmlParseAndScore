@@ -1,6 +1,7 @@
 ﻿using HtmlAgilityPack;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,7 +32,8 @@ namespace ParseAndScore
             pageInfoList.MaxScore = GetMaxScore(pageInfoList.HtmlKeyValueList);
             pageInfoList.MinScore = GetMinScore(pageInfoList.HtmlKeyValueList);
             pageInfoList.AverageScore = GetAverageScore(pageInfoList.HtmlKeyValueList);
-            pageInfoList.FileName = filePath;
+
+            pageInfoList.FileName = Path.GetFileName(filePath);
             pageInfoList.ProcessingDate = DateTime.Now;
 
             try
@@ -84,10 +86,8 @@ namespace ParseAndScore
 
 
 
-        public void RetrieveAllScores(string start, string end)
+        public List<ResponseInfo> RetrieveAllScores()
         {
-            var startDate = DateTime.Parse(start);
-            var endDate = DateTime.Parse(end);
             var results = new List<ResponseInfo>();
             try
             {
@@ -99,6 +99,7 @@ namespace ParseAndScore
                 Console.WriteLine("An Error occured updating the database {0}", ex.Message);
                 throw;
             }
+            return results;
         }
 
         //Place in Helper class when done
@@ -143,9 +144,9 @@ namespace ParseAndScore
 
         private static HtmlDocument getFileFromPath(string filePath)
         {
-            var path = filePath + @".html";
+          //  var path = filePath + @".html";
             var doc = new HtmlDocument();
-            doc.Load(path);
+            doc.Load(filePath);
             return doc;
         }
 
