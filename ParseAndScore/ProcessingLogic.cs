@@ -7,52 +7,101 @@ using System.Threading.Tasks;
 
 namespace ParseAndScore
 {
-    //todo set up for dependancy injection
     public class ProcessingLogic
     {
         public ProcessingLogic()
         {
         }
 
+        //TODO change output to a bool or void
         public PageInfoList ProcessingFile(string filePath)
         {
 
-            //read in html doc
-            
             var htmlDoc = getFileFromPath(filePath);
-            //create or load the set of KV info for tag values
             var scoreTable = new ScoreSet();
-            var pageInfoList = new PageInfoList();
-            pageInfoList.htmlKeyValueList = new List<KeyValuePair<string, int>>();
-
-
-            //add an if block to check if record has been updated
-   
-
-            //if no-make a db call & display()
-            //if yes - extract and store
-
-
+            var pageInfoList = new PageInfoList(); 
+            pageInfoList.HtmlKeyValueList = new List<KeyValuePair<string, int>>();
 
             foreach (var kv in scoreTable.ScoreTable)
             {
-
-                //if the key is in the doc...
-                //then get a count of how many are in the doc
                 var tagScore = GetTagCount(htmlDoc, kv);
-                pageInfoList.htmlKeyValueList.Add(tagScore);        
-                
+                pageInfoList.HtmlKeyValueList.Add(tagScore);                        
             }
-            pageInfoList.totalValue = TotalTagScore(pageInfoList.htmlKeyValueList);
-            //TODO store in Database
+            pageInfoList.TotalScore = GetTotalScore(pageInfoList.HtmlKeyValueList);
+            pageInfoList.MaxScore = GetMaxScore(pageInfoList.HtmlKeyValueList);
+            pageInfoList.MinScore = GetMinScore(pageInfoList.HtmlKeyValueList);
+            pageInfoList.AverageScore = GetAverageScore(pageInfoList.HtmlKeyValueList);
+            pageInfoList.FileName = filePath;
+            pageInfoList.ProcessingDate = DateTime.Now;
 
-
+            try
+            {
+                var storeValues = new DataAccess();
+                storeValues.UpdateScores_OldWay(pageInfoList);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("An Error occured updating the database {0}", ex.Message );
+                throw;
+            }
             return pageInfoList;
+        }
+
+        public List<ResponseInfo> RetrieveHtmlScores(string fileName)
+        {
+            var results = new List<ResponseInfo>();
+            try
+            {
+                var storeValues = new DataAccess();
+                results = storeValues.GetAllScoresFromFile(fileName);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("An Error occured updating the database {0}", ex.Message);
+                throw;
+            }
+            return results;
+
+        }
+
+        public List<ResponseInfo> RetrieveScoresByDateRange(string start, string end)
+        {
+            var startDate = DateTime.Parse(start);
+            var endDate = DateTime.Parse(end);
+            var results = new List<ResponseInfo>();
+            try
+            {
+                var storeValues = new DataAccess();
+                results = storeValues.GetAllScoresFromDateRange(startDate, endDate);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("An Error occured updating the database {0}", ex.Message);
+                throw;
+            }
+            return results;
         }
 
 
 
+        public void RetrieveAllScores(string start, string end)
+        {
+            var startDate = DateTime.Parse(start);
+            var endDate = DateTime.Parse(end);
+            var results = new List<ResponseInfo>();
+            try
+            {
+                var storeValues = new DataAccess();
+                results = storeValues.GetAllScores();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("An Error occured updating the database {0}", ex.Message);
+                throw;
+            }
+        }
 
+        //Place in Helper class when done
         private static KeyValuePair<string,int> GetTagCount(HtmlDocument topNode, KeyValuePair<string, int> skv)
         {
             var nodeCount = 0;
@@ -68,7 +117,29 @@ namespace ParseAndScore
             return tagValue;
         }
 
+        private static int GetMaxScore(List<KeyValuePair<string, int>> kvList)
+        {
+           
+            return kvList.Select(x => x.Value).Max();
+        }
 
+        private static int GetMinScore(List<KeyValuePair<string, int>> kvList)
+        {
+
+            return kvList.Select(x => x.Value).Min();
+        }
+
+        private static double GetAverageScore(List<KeyValuePair<string, int>> kvList)
+        {
+
+            return kvList.Select(x => x.Value).Average();
+        }
+
+        private static int GetTotalScore(List<KeyValuePair<string, int>> kvList)
+        {
+
+            return kvList.Select(x => x.Value).Sum();
+        }
 
         private static HtmlDocument getFileFromPath(string filePath)
         {
@@ -78,15 +149,5 @@ namespace ParseAndScore
             return doc;
         }
 
-
-        private static int TotalTagScore(List<KeyValuePair<string, int>> kvList)
-        {
-            var total = 0;
-            foreach (var item in kvList)
-            {
-                total = total + item.Value;
-            }
-            return total;
-        }
     }
 }

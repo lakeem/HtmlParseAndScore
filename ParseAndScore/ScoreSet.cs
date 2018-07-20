@@ -8,8 +8,8 @@ namespace ParseAndScore
 {
     public class ScoreSet
     {
-        //Hardcoded for now, this can be replaced with reading values 
-        //from a config file and manager 
+        //Hardcoded for now, this could be replaced with reading values 
+        //from a config file and manager depending on the app usage
         public Dictionary<string, int> ScoreTable
         {
             get
