@@ -58,12 +58,4 @@
   <ItemGroup>
     <Folder Include="Properties" />
   </ItemGroup>
-  <ItemGroup>
-    <Build Include="PageInfoTable.sql" />
-    <Build Include="PageInfoKV.sql" />
-    <Build Include="UpdateScoresCommand.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <RefactorLog Include="HtmlDataBase.refactorlog" />
-  </ItemGroup>
 </Project>
