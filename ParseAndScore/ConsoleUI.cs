@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace ParseAndScore
 {
@@ -12,8 +10,6 @@ namespace ParseAndScore
 
         public void ConsoleAction()
         {
-
-            // PrintUserOptionMessage();
 
             Console.WriteLine("Option 1 - Process html file");
             Console.WriteLine("Option 2 - Retrieve scores by file name");
@@ -107,24 +103,16 @@ namespace ParseAndScore
         }
 
 
-        private static void PrintUserOptionMessage()
-        {
-
-        }
-
-
-
-
         private static void PrintOutput(List<ResponseInfo> output)
         {
 
-            var test = new ResponseInfo();
+            var headerValues = new ResponseInfo();
             //Console.WriteLine("0----5---10---15---20---25---30---35---40---45---50---55---60---65---70---75---80---85---90" +
             //    "---95--100------110-------120");
             Console.WriteLine("\n");
             Console.WriteLine("{0}____{1}_________{2}_________{3}____{4}____{5}____{6}____{7}_____{8}",
-                nameof(test.Id), nameof(test.FileName), nameof(test.MinScore), nameof(test.MaxScore), nameof(test.AverageScore),
-                nameof(test.Tag), nameof(test.Score), nameof(test.TotalScore), nameof(test.ProcessingDate));
+                nameof(headerValues.Id), nameof(headerValues.FileName), nameof(headerValues.MinScore), nameof(headerValues.MaxScore), nameof(headerValues.AverageScore),
+                nameof(headerValues.Tag), nameof(headerValues.Score), nameof(headerValues.TotalScore), nameof(headerValues.ProcessingDate));
             Console.WriteLine("\n");
             if (output?.Count==0)
             {

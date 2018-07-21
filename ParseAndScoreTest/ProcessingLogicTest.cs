@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ParseAndScore;
 
@@ -10,33 +9,43 @@ namespace ParseAndScoreTest
     public class ProcessingLogicTest
     {
 
+        /* An exhaustive testing would include a value check on the post parsing scoring logic.
+         * Those test can be added at a later date along with testing values produced along side the 
+         * testing data      
+         */
+
         [TestMethod]
         public void Test_AboutUs()
         {
             var resultsList = new PageInfoList();
-
-            var testTag = new KeyValuePair<string, int>("div", 12);
-
+            var scoreCheck = new ScoreSet();
             var testLocation = AppDomain.CurrentDomain.BaseDirectory;
             var shortPath = @"\data\about-us.html";
 
             var processingLogic = new ProcessingLogic();
             resultsList = processingLogic.ProcessingFile(testLocation + shortPath);
 
-            Assert.IsNotNull(resultsList.HtmlKeyValueList);
-            Assert.IsTrue(resultsList.HtmlKeyValueList.Contains(testTag));
+            var results = new List<ResponseInfo>();
+            try
+            {
+                var dataAccess = new DataAccess();
+                results = dataAccess.GetAllScoresFromFile(resultsList.FileName);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
 
+            Assert.IsNotNull(resultsList.HtmlKeyValueList);
+            Assert.IsNotNull(results);
         }
 
         [TestMethod]
         public void Test_Blog()
         {
             var resultsList = new PageInfoList();
-            
-
-
             var testTag = new KeyValuePair<string, int>("tt", 0);
-
+            var scoreCheck = new ScoreSet();
             var testLocation = AppDomain.CurrentDomain.BaseDirectory;
             var shortPath = @"\data\blog.html";
 
@@ -251,53 +260,8 @@ namespace ParseAndScoreTest
                 throw;
             }
             Assert.IsNotNull(resultsList.HtmlKeyValueList);
-
-        }
-
-
-      
-
-
-
-
-
-
-
-        [TestMethod]
-        public void TestDatabaseConnectivity()
-        {
-            var fileName = "test1.html";
-            var results = new List<ResponseInfo>();
-            try
-            {
-                var storeValues = new DataAccess();
-                results = storeValues.GetAllScoresFromFile(fileName);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("An Error occured updating the database {0}", ex.Message);
-                throw;
-            }
             Assert.IsNotNull(results);
-        }
 
-
-        [TestMethod]
-        public void TestDatabaseConnectivity_DateBaseDebugTest()
-        {
-            var fileName = "test1.html";
-            var results = new List<ResponseInfo>();
-            try
-            {
-                var storeValues = new DataAccess();
-                results = storeValues.GetAllScoresFromFile(fileName);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("An Error occured updating the database {0}", ex.Message);
-                throw;
-            }
-            Assert.IsNotNull(results);
         }
 
     }
