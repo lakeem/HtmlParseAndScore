@@ -30,3 +30,14 @@ Please note: The "name=TestingDataBaseI" field should NOT be modified.
 
 After running the Database creation script the unit tests in ParseAndScoreTest project should all pass.  The unit test includes calls to the database. Typically, unit testing 
 the business logic would be separate from database connection test but the approach for this project is more end to end functional testing. 
+
+
+Step 3 - Running the Console App
+After the project successfully builds the Console app can be run directly. The exe can be found in ParseAndScore\bin\Debug\ParseAndScore.exe
+The app can also be run via Visual Studio.  
+
+The app provides 4 options. 
+1- Processing a file via drag and drop to console window.
+2- Retrieving a file by name (including the extention .html)
+3- Retrieving a file by date range 
+4- Retrieving all files in recorded in the database.
