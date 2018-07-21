@@ -126,6 +126,7 @@ namespace ParseAndScore
                     Console.WriteLine("{0}    {1}         {2}         {3}    {4}    {5}    {6}    {7}    {8}", string.Format("{0,0} ", item.Id), string.Format("{0,-5} ", item.FileName), string.Format("{0,-7} ", item.MinScore), string.Format("{0,-7} ", item.MaxScore), string.Format("{0,-7} ", item.AverageScore.ToString("F")),
                     string.Format("{0,-7} ", item.Tag), string.Format("{0,-5} ", item.Score), string.Format("{0,0} ", item.TotalScore), string.Format("{0,0} ", item.ProcessingDate));
                 }
+                Console.WriteLine("\n");
             }     
         }
 

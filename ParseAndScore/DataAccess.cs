@@ -41,14 +41,14 @@ namespace ParseAndScore
             }
         }
 
-        public void UpdateScoresCommand(PageInfoList pageInfo)
+        public void UpdateScoresCommand(HtmlFileInfo pageInfo)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.GetConnection("TestingDatabaseI")))
             {
-                PageInfoList newInfo = new PageInfoList { AverageScore = pageInfo.AverageScore, FileName= pageInfo.FileName,
+                HtmlFileInfo newInfo = new HtmlFileInfo { AverageScore = pageInfo.AverageScore, FileName= pageInfo.FileName,
                  MaxScore = pageInfo.MaxScore, MinScore = pageInfo.MinScore,
                    ProcessingDate = pageInfo.ProcessingDate, TotalScore = pageInfo.TotalScore};
-                List<PageInfoList> pageList = new List<PageInfoList>();
+                List<HtmlFileInfo> pageList = new List<HtmlFileInfo>();
                 pageList.Add(newInfo);
                 connection.Execute("dbo.uspUpdateCommand @AverageScore, @FileName, @MaxScore, @MinScore, @ProcessingDate, @TotalScore", 
                       pageList);
@@ -57,7 +57,7 @@ namespace ParseAndScore
 
       
 
-        public void UpdateScores_OldWay(PageInfoList pageInfo)
+        public void UpdateScores_OldWay(HtmlFileInfo pageInfo)
         {
             var cs = Helper.GetConnection("TestingDatabaseI");
             using (SqlConnection con = new SqlConnection(cs) )

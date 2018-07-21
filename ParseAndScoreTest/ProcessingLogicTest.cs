@@ -17,7 +17,7 @@ namespace ParseAndScoreTest
         [TestMethod]
         public void Test_AboutUs()
         {
-            var resultsList = new PageInfoList();
+            var resultsList = new HtmlFileInfo();
             var scoreCheck = new ScoreSet();
             var testLocation = AppDomain.CurrentDomain.BaseDirectory;
             var shortPath = @"\data\about-us.html";
@@ -43,7 +43,7 @@ namespace ParseAndScoreTest
         [TestMethod]
         public void Test_Blog()
         {
-            var resultsList = new PageInfoList();
+            var resultsList = new HtmlFileInfo();
             var testTag = new KeyValuePair<string, int>("tt", 0);
             var scoreCheck = new ScoreSet();
             var testLocation = AppDomain.CurrentDomain.BaseDirectory;
@@ -71,7 +71,7 @@ namespace ParseAndScoreTest
         [TestMethod]
         public void Test_ContactUs()
         {
-            var resultsList = new PageInfoList();
+            var resultsList = new HtmlFileInfo();
 
             var testTag = new KeyValuePair<string, int>("tt", 0);
 
@@ -99,7 +99,7 @@ namespace ParseAndScoreTest
         [TestMethod]
         public void Test_Index()
         {
-            var resultsList = new PageInfoList();
+            var resultsList = new HtmlFileInfo();
 
             var testTag = new KeyValuePair<string, int>("tt", 0);
 
@@ -127,7 +127,7 @@ namespace ParseAndScoreTest
         [TestMethod]
         public void Test_Location()
         {
-            var resultsList = new PageInfoList();
+            var resultsList = new HtmlFileInfo();
 
             var testTag = new KeyValuePair<string, int>("tt", 0);
             
@@ -155,7 +155,7 @@ namespace ParseAndScoreTest
         [TestMethod]
         public void Test_News()
         {
-            var resultsList = new PageInfoList();
+            var resultsList = new HtmlFileInfo();
 
             var testTag = new KeyValuePair<string, int>("tt", 0);
 
@@ -184,7 +184,7 @@ namespace ParseAndScoreTest
         [TestMethod]
         public void Test_Privacy()
         {
-            var resultsList = new PageInfoList();
+            var resultsList = new HtmlFileInfo();
 
             var testTag = new KeyValuePair<string, int>("tt", 0);
 
@@ -211,7 +211,7 @@ namespace ParseAndScoreTest
         [TestMethod]
         public void Test_Signup()
         {
-            var resultsList = new PageInfoList();
+            var resultsList = new HtmlFileInfo();
 
             var testTag = new KeyValuePair<string, int>("frame", -15);
             var testLocation  = AppDomain.CurrentDomain.BaseDirectory;
@@ -240,7 +240,7 @@ namespace ParseAndScoreTest
         [TestMethod]
         public void Test_Terms()
         {
-            var resultsList = new PageInfoList();
+            var resultsList = new HtmlFileInfo();
 
             var testTag = new KeyValuePair<string, int>("frame", -15);
 

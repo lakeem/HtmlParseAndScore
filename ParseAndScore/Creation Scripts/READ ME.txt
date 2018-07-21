@@ -1,0 +1,32 @@
+ParseAndScore is implemented as a Console app.
+
+Languages and Tools used:
+
+MSSQL14 SQL Express
+Dapper v 1.50.5
+HtmlAgilityPack v 1.8.5
+
+Step 1 - Install Nuget Packages
+
+To install the nuget packages open the Package Manager Console window in Visual Studio run the command
+nuget update ParseAndScore.sln 
+
+This should auto install the nuget files listed above. If the command fails then select
+the solution file from the Solution Explorer window, right click and select "Manage Nuget Packages for Solutions"
+The nuget manager will open a new tab in Visual Studio. Under the browse option search for the listed nugets and install in 
+the solution (including the test project)
+
+Step 2 - Database Creation
+
+A database creation script is included in the project in the folder "Creation Scripts".  
+On an instance of MSSQL Sever run the attached script to recreate the database, tables and stored procedures
+
+The ParseAndScore project and the ParseAndScoreTest project contain App.config settings 
+that need to be modified with the version of SQL Sever in use specifically the value for "Server =". 
+
+Please note: The "name=TestingDataBaseI" field should NOT be modified. 
+
+<add name="TestingDatabaseI" connectionString="Server=.\SQLEXPRESS;Database=HtmlDatabase;Trusted_Connection=True;" providerName="System.Data.SqlClient"/>
+
+After running the Database creation script the unit tests in ParseAndScoreTest project should all pass.  The unit test includes calls to the database. Typically, unit testing 
+the business logic would be separate from database connection test but the approach for this project is more end to end functional testing. 

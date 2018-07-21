@@ -69,6 +69,7 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="Creation Scripts\CreateHtmlDatabaseScript.sql" />
+    <Content Include="Creation Scripts\READ ME.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

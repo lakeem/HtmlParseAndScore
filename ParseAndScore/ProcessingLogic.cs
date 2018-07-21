@@ -15,12 +15,12 @@ namespace ParseAndScore
         }
 
         //TODO change output to a bool or void
-        public PageInfoList ProcessingFile(string filePath)
+        public HtmlFileInfo ProcessingFile(string filePath)
         {
 
             var htmlDoc = getFileFromPath(filePath);
             var scoreTable = new ScoreSet();
-            var pageInfoList = new PageInfoList(); 
+            var pageInfoList = new HtmlFileInfo(); 
             pageInfoList.HtmlKeyValueList = new List<KeyValuePair<string, int>>();
 
             foreach (var kv in scoreTable.ScoreTable)

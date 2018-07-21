@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace ParseAndScore
 {
     [Serializable]
-    public class PageInfoList
+    public class HtmlFileInfo
     {
         public List<KeyValuePair<string,int>> HtmlKeyValueList { get; set; }
 
