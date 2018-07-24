@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParseAndScore", "ParseAndSc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParseAndScoreTest", "ParseAndScoreTest\ParseAndScoreTest.csproj", "{0E7C5DC3-16AC-47A9-AD7B-183D0396201E}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "HtmlDataBase", "HtmlDataBase\HtmlDataBase.sqlproj", "{2E09B3EB-6833-45E6-BC97-ECCA07078A45}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
