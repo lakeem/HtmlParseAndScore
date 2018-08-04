@@ -55,6 +55,7 @@
     <Compile Include="ConsoleUI.cs" />
     <Compile Include="DataAccess.cs" />
     <Compile Include="Helper.cs" />
+    <Compile Include="IDataAccess.cs" />
     <Compile Include="PageInfoList.cs" />
     <Compile Include="ProcessingLogic.cs" />
     <Compile Include="Program.cs" />

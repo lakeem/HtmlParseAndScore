@@ -10,11 +10,13 @@ namespace ParseAndScore
 {
     public class ProcessingLogic
     {
-        public ProcessingLogic()
+        IDataAccess _dataAccess;
+
+        public ProcessingLogic(IDataAccess dataAccess)
         {
+            _dataAccess = dataAccess;
         }
 
-        //TODO change output to a bool or void
         public HtmlFileInfo ProcessingFile(string filePath)
         {
 
@@ -38,8 +40,7 @@ namespace ParseAndScore
 
             try
             {
-                var storeValues = new DataAccess();
-                storeValues.UpdateScores_OldWay(pageInfoList);
+                _dataAccess.UpdateScores_OldWay(pageInfoList);
             }
             catch (Exception ex)
             {
@@ -54,8 +55,7 @@ namespace ParseAndScore
             var results = new List<ResponseInfo>();
             try
             {
-                var storeValues = new DataAccess();
-                results = storeValues.GetAllScoresFromFile(fileName);
+                results = _dataAccess.GetAllScoresFromFile(fileName);
             }
             catch (Exception ex)
             {
@@ -73,8 +73,7 @@ namespace ParseAndScore
             var results = new List<ResponseInfo>();
             try
             {
-                var storeValues = new DataAccess();
-                results = storeValues.GetAllScoresFromDateRange(startDate, endDate);
+                results = _dataAccess.GetAllScoresFromDateRange(startDate, endDate);
             }
             catch (Exception ex)
             {
@@ -84,15 +83,12 @@ namespace ParseAndScore
             return results;
         }
 
-
-
         public List<ResponseInfo> RetrieveAllScores()
         {
             var results = new List<ResponseInfo>();
             try
             {
-                var storeValues = new DataAccess();
-                results = storeValues.GetAllScores();
+                results = _dataAccess.GetAllScores();
             }
             catch (Exception ex)
             {

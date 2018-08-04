@@ -11,7 +11,7 @@ using Microsoft.SqlServer.Server;
 
 namespace ParseAndScore
 {
-   public  class DataAccess
+   public  class DataAccess : IDataAccess
     {
         public List<ResponseInfo> GetAllScoresFromFile(string fileName)
         {
@@ -55,8 +55,6 @@ namespace ParseAndScore
             }
         }
 
-      
-
         public void UpdateScores_OldWay(HtmlFileInfo pageInfo)
         {
             var cs = Helper.GetConnection("TestingDatabaseI");
@@ -99,8 +97,6 @@ namespace ParseAndScore
             }
             return htmlKVTagValues;
         }
-
-
 
 
         //Helper for the datatable old way

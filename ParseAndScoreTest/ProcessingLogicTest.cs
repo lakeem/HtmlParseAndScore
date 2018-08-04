@@ -5,6 +5,11 @@ using ParseAndScore;
 
 namespace ParseAndScoreTest
 {
+    /* This Testing class is a live test parsing and database insertion test of each html file
+     * 
+     * An additional class containing mock test (usign MOQ) will be added later
+     */
+
     [TestClass]
     public class ProcessingLogicTest
     {
@@ -18,17 +23,17 @@ namespace ParseAndScoreTest
         public void Test_AboutUs()
         {
             var resultsList = new HtmlFileInfo();
-            var scoreCheck = new ScoreSet();
             var testLocation = AppDomain.CurrentDomain.BaseDirectory;
             var shortPath = @"\data\about-us.html";
+            IDataAccess dataAccess = new DataAccess();
 
-            var processingLogic = new ProcessingLogic();
+
+            var processingLogic = new ProcessingLogic(dataAccess);
             resultsList = processingLogic.ProcessingFile(testLocation + shortPath);
 
             var results = new List<ResponseInfo>();
             try
             {
-                var dataAccess = new DataAccess();
                 results = dataAccess.GetAllScoresFromFile(resultsList.FileName);
             }
             catch (Exception)
@@ -45,17 +50,17 @@ namespace ParseAndScoreTest
         {
             var resultsList = new HtmlFileInfo();
             var testTag = new KeyValuePair<string, int>("tt", 0);
-            var scoreCheck = new ScoreSet();
             var testLocation = AppDomain.CurrentDomain.BaseDirectory;
             var shortPath = @"\data\blog.html";
+            IDataAccess dataAccess = new DataAccess();
 
-            var processingLogic = new ProcessingLogic();
+
+            var processingLogic = new ProcessingLogic(dataAccess);
             resultsList = processingLogic.ProcessingFile(testLocation + shortPath);
 
             var results = new List<ResponseInfo>();
             try
             {
-                var dataAccess = new DataAccess();
                 results = dataAccess.GetAllScoresFromFile(resultsList.FileName);
             }
             catch (Exception)
@@ -72,18 +77,16 @@ namespace ParseAndScoreTest
         public void Test_ContactUs()
         {
             var resultsList = new HtmlFileInfo();
-
             var testTag = new KeyValuePair<string, int>("tt", 0);
-
             var testLocation = AppDomain.CurrentDomain.BaseDirectory;
             var shortPath = @"\data\contact-us.html";
+            IDataAccess dataAccess = new DataAccess();
 
-            var processingLogic = new ProcessingLogic();
+            var processingLogic = new ProcessingLogic(dataAccess);
             resultsList = processingLogic.ProcessingFile(testLocation + shortPath);
             var results = new List<ResponseInfo>();
             try
             {
-                var dataAccess = new DataAccess();
                 results = dataAccess.GetAllScoresFromFile(resultsList.FileName);
             }
             catch (Exception)
@@ -100,18 +103,16 @@ namespace ParseAndScoreTest
         public void Test_Index()
         {
             var resultsList = new HtmlFileInfo();
-
             var testTag = new KeyValuePair<string, int>("tt", 0);
-
             var testLocation = AppDomain.CurrentDomain.BaseDirectory;
             var shortPath = @"\data\index.html";
+            IDataAccess dataAccess = new DataAccess();
 
-            var processingLogic = new ProcessingLogic();
+            var processingLogic = new ProcessingLogic(dataAccess);
             resultsList = processingLogic.ProcessingFile(testLocation + shortPath);
             var results = new List<ResponseInfo>();
             try
             {
-                var dataAccess = new DataAccess();
                 results = dataAccess.GetAllScoresFromFile(resultsList.FileName);
             }
             catch (Exception)
@@ -128,25 +129,22 @@ namespace ParseAndScoreTest
         public void Test_Location()
         {
             var resultsList = new HtmlFileInfo();
-
-            var testTag = new KeyValuePair<string, int>("tt", 0);
-            
+            var testTag = new KeyValuePair<string, int>("tt", 0);        
             var testLocation = AppDomain.CurrentDomain.BaseDirectory;
             var shortPath = @"\data\location.html";
+            IDataAccess dataAccess = new DataAccess();
+            var processingLogic = new ProcessingLogic(dataAccess);
 
-            var processingLogic = new ProcessingLogic();
             resultsList = processingLogic.ProcessingFile(testLocation + shortPath);
             var results = new List<ResponseInfo>();
             try
             {
-                var dataAccess = new DataAccess();
                 results = dataAccess.GetAllScoresFromFile(resultsList.FileName);
             }
             catch (Exception)
             {
                 throw;
             }
-
             Assert.IsNotNull(resultsList.HtmlKeyValueList);
             Assert.IsNotNull(results);
         }
@@ -156,26 +154,22 @@ namespace ParseAndScoreTest
         public void Test_News()
         {
             var resultsList = new HtmlFileInfo();
-
             var testTag = new KeyValuePair<string, int>("tt", 0);
-
             var testLocation = AppDomain.CurrentDomain.BaseDirectory;
             var shortPath = @"\data\news.html";
+            IDataAccess dataAccess = new DataAccess();
+            var processingLogic = new ProcessingLogic(dataAccess);
 
-            var processingLogic = new ProcessingLogic();
             resultsList = processingLogic.ProcessingFile(testLocation + shortPath);
-
             var results = new List<ResponseInfo>();
             try
             {
-                var dataAccess = new DataAccess();
                 results = dataAccess.GetAllScoresFromFile(resultsList.FileName);
             }
             catch (Exception)
             {
                 throw;
             }
-
             Assert.IsNotNull(resultsList.HtmlKeyValueList);
             Assert.IsNotNull(results);
         }
@@ -185,25 +179,22 @@ namespace ParseAndScoreTest
         public void Test_Privacy()
         {
             var resultsList = new HtmlFileInfo();
-
             var testTag = new KeyValuePair<string, int>("tt", 0);
-
             var testLocation = AppDomain.CurrentDomain.BaseDirectory;
             var shortPath = @"\data\privacy.html";
+            IDataAccess dataAccess = new DataAccess();
 
-            var processingLogic = new ProcessingLogic();
+            var processingLogic = new ProcessingLogic(dataAccess);
             resultsList = processingLogic.ProcessingFile(testLocation + shortPath);
             var results = new List<ResponseInfo>();
             try
             {
-                var dataAccess = new DataAccess();
                 results = dataAccess.GetAllScoresFromFile(resultsList.FileName);
             }
             catch (Exception)
             {
                 throw;
             }
-
             Assert.IsNotNull(resultsList.HtmlKeyValueList);
             Assert.IsNotNull(results);
         }
@@ -212,47 +203,39 @@ namespace ParseAndScoreTest
         public void Test_Signup()
         {
             var resultsList = new HtmlFileInfo();
-
             var testTag = new KeyValuePair<string, int>("frame", -15);
             var testLocation  = AppDomain.CurrentDomain.BaseDirectory;
             var shortPath = @"\data\signup.html";
-
-            var processingLogic = new ProcessingLogic();
+            IDataAccess dataAccess = new DataAccess();
+            var processingLogic = new ProcessingLogic(dataAccess);
             resultsList = processingLogic.ProcessingFile(testLocation + shortPath);
             var results = new List<ResponseInfo>();
             try
             {
-                var dataAccess = new DataAccess();
                 results = dataAccess.GetAllScoresFromFile(resultsList.FileName);
             }
             catch (Exception)
             {
                 throw;
             }
-
             Assert.IsNotNull(resultsList.HtmlKeyValueList);
             Assert.IsNotNull(results);
             Assert.IsTrue(resultsList.HtmlKeyValueList.Contains(testTag));
-
         }
-
-       
+  
         [TestMethod]
         public void Test_Terms()
         {
             var resultsList = new HtmlFileInfo();
-
             var testTag = new KeyValuePair<string, int>("frame", -15);
-
             var testLocation = AppDomain.CurrentDomain.BaseDirectory;
             var shortPath = @"\data\terms.html";
-
-            var processingLogic = new ProcessingLogic();
+            IDataAccess dataAccess = new DataAccess();
+            var processingLogic = new ProcessingLogic(dataAccess);
             resultsList = processingLogic.ProcessingFile(testLocation + shortPath);
             var results = new List<ResponseInfo>();
             try
             {
-                var dataAccess = new DataAccess();
                 results = dataAccess.GetAllScoresFromFile(resultsList.FileName);
             }
             catch (Exception)
@@ -261,7 +244,6 @@ namespace ParseAndScoreTest
             }
             Assert.IsNotNull(resultsList.HtmlKeyValueList);
             Assert.IsNotNull(results);
-
         }
 
     }
