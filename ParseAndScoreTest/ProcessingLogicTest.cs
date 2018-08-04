@@ -26,11 +26,8 @@ namespace ParseAndScoreTest
             var testLocation = AppDomain.CurrentDomain.BaseDirectory;
             var shortPath = @"\data\about-us.html";
             IDataAccess dataAccess = new DataAccess();
-
-
             var processingLogic = new ProcessingLogic(dataAccess);
             resultsList = processingLogic.ProcessingFile(testLocation + shortPath);
-
             var results = new List<ResponseInfo>();
             try
             {
@@ -40,7 +37,6 @@ namespace ParseAndScoreTest
             {
                 throw;
             }
-
             Assert.IsNotNull(resultsList.HtmlKeyValueList);
             Assert.IsNotNull(results);
         }
@@ -53,8 +49,6 @@ namespace ParseAndScoreTest
             var testLocation = AppDomain.CurrentDomain.BaseDirectory;
             var shortPath = @"\data\blog.html";
             IDataAccess dataAccess = new DataAccess();
-
-
             var processingLogic = new ProcessingLogic(dataAccess);
             resultsList = processingLogic.ProcessingFile(testLocation + shortPath);
 

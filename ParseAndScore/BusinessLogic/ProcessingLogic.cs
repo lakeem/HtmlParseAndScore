@@ -3,8 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace ParseAndScore
 {
@@ -98,7 +97,6 @@ namespace ParseAndScore
             return results;
         }
 
-        //Place in Helper class when done
         private static KeyValuePair<string,int> GetTagCount(HtmlDocument topNode, KeyValuePair<string, int> skv)
         {
             var nodeCount = 0;
@@ -134,13 +132,11 @@ namespace ParseAndScore
 
         private static int GetTotalScore(List<KeyValuePair<string, int>> kvList)
         {
-
             return kvList.Select(x => x.Value).Sum();
         }
 
         private static HtmlDocument getFileFromPath(string filePath)
         {
-          //  var path = filePath + @".html";
             var doc = new HtmlDocument();
             doc.Load(filePath);
             return doc;
